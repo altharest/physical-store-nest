@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -6,8 +6,12 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  hello() {
+  storeRoot() {
     return { message: 'Teste Physical Store' };
-    // return this.appService.getHello();
+  }
+
+  @Get(':id')
+  storeByID(@Param('id') id: number) {
+    return { message: `Loja de ID: ${id}.` };
   }
 }
